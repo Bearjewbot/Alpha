@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;  
+}
+
+:root{
+    --text-color: black; 
+    --text-muted-color: #757575;
+    --background-color: white;
+    --standard-fontfamily: "sharif" 
+}
+
+html, body {
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
