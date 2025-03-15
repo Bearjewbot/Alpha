@@ -1,26 +1,26 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Data.Entities;
 
 public class ProjectEntity
 {
-    
-}
+    public int Id { get; set; }
 
-public class TimetableEntity
-{
-    
-}
+    [Required] public string Name { get; set; } = string.Empty;
 
-public class CustomerEntity
-{
-    
-}
+    [Required] public string Description { get; set; } = string.Empty;
 
-public class BudgetEntity
-{
-    
-}
 
-public class StatusTypeEntity
-{
+    public int CustomerId { get; set; }
+    public CustomerEntity Customer { get; set; } = null!;
+    
+    public int TimeTableId { get; set; }
+    public TimetableEntity TimeTable { get; set; } = null!;
+
+    public int StatusId { get; set; }
+    public StatusTypeEntity StatusType { get; set; } = null!;
+    
+    public int BudgetId { get; set; }
+    public BudgetEntity Budget { get; set; } = null!;
     
 }
