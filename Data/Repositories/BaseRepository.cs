@@ -44,11 +44,6 @@ public abstract class BaseRepository<TEntity>(DataContext context) : IBaseReposi
 
             return await DbSet.Where(expression).ToListAsync();
         }
-        catch (DbUpdateConcurrencyException e)
-        {
-            Debug.WriteLine(e);
-            return [];
-        }
         catch (Exception e)
         {
             Debug.WriteLine(e);
@@ -62,11 +57,6 @@ public abstract class BaseRepository<TEntity>(DataContext context) : IBaseReposi
         {
             var entity = await DbSet.FirstOrDefaultAsync(expression);
             return entity;
-        }
-        catch (DbUpdateConcurrencyException e)
-        {
-            Debug.WriteLine(e);
-            return null;
         }
         catch (Exception e)
         {
