@@ -9,6 +9,7 @@ public static class BudgetFactory
     {
         var budget = new Budget
         {
+            Id = entity.Id,
             BudgetAmount = entity.Budget
         };
 
