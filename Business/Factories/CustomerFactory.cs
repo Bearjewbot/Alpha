@@ -5,10 +5,11 @@ namespace Business.Factories;
 
 public static class CustomerFactory
 {
-    public static Customer? MapCustomer(CustomerEntity entity)
+    public static Customer MapCustomer(CustomerEntity entity)
     {
         var customer = new Customer
         {
+            Id = entity.Id,
             Name = entity.Name,
             OurReference = entity.OurReference
         };

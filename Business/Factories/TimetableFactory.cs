@@ -9,6 +9,7 @@ public static class TimetableFactory
     {
         var timetable = new Timetable
         {
+            Id = entity.Id,
             StartDate = entity.StartDate,
             EndDate = entity.EndDate
         };

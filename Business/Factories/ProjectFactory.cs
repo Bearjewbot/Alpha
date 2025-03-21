@@ -5,7 +5,7 @@ namespace Business.Factories;
 
 public static class ProjectFactory
 {
-    public static ProjectEntity? MapProjectEntity(ProjectFormRegistration form)
+    public static ProjectEntity? MapCreateProject(ProjectFormRegistration form)
     {
         var entity = new ProjectEntity
         {
@@ -20,10 +20,11 @@ public static class ProjectFactory
         return entity;
     }
 
-    public static Project? MapProject(ProjectEntity entity)
+    public static Project MapProject(ProjectEntity entity)
     {
         var project = new Project
-        {
+        {   
+            Id = entity.Id,
             Name = entity.Name,
             Description = entity.Description,
             Customer = CustomerFactory.MapCustomer(entity.Customer),
@@ -33,5 +34,21 @@ public static class ProjectFactory
         };
 
         return project;
+    }
+
+    public static ProjectEntity MapProjectEntity(Project project)
+    {
+        var entity = new ProjectEntity
+        {
+            Id = project.Id,
+            Name = project.Name,
+            Description = project.Description,
+            CustomerId = project.Customer.Id,
+            TimeTableId = project.Dates.Id,
+            StatusId = project.Status.Id,
+            BudgetId = project.Budget.Id,
+        };
+
+        return entity;
     }
 }

@@ -23,10 +23,8 @@ public class ProjectRepository(DataContext context) : BaseRepository<ProjectEnti
             
             return await DbSet
                 .Where(expression)
-                .Include(x => x.Budget)
                 .Include(x => x.Customer)
                 .Include(x => x.StatusType)
-                .Include(x => x.TimeTable)
                 .ToListAsync();;
         }
         catch (Exception e)
