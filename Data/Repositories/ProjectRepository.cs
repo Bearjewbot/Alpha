@@ -16,10 +16,8 @@ public class ProjectRepository(DataContext context) : BaseRepository<ProjectEnti
             if (expression == null)
             {
                 return await DbSet
-                    .Include(x => x.Budget)
                     .Include(x => x.Customer)
                     .Include(x => x.StatusType)
-                    .Include(x => x.TimeTable)
                     .ToListAsync();
             }
             

@@ -13,4 +13,6 @@ public class ProjectFormRegistration
     public int TimetableId { get; set; }    
     
     public int BudgetId { get; set; }
+    
+    public int StatusTypeId { get; set; }
 }
