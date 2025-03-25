@@ -4,7 +4,7 @@ namespace Data.Entities;
 
 public class TimetableEntity
 {
-    public int Id { get; set; }
+    [Key] public int Id { get; set; }
     
     [Required] public DateTime StartDate { get; set; }
     

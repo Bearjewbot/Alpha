@@ -4,7 +4,7 @@ namespace Data.Entities;
 
 public class BudgetEntity
 {
-    public int Id { get; set; }
+    [Key] public int Id { get; set; }
     
     [Required] public decimal Budget { get; set; }   
     
