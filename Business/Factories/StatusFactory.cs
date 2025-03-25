@@ -10,7 +10,7 @@ public static class StatusFactory
         var status = new StatusType
         {
             Id = entity.Id,
-            Status = entity.Status
+            Status = entity.ProjectStatus
         };
 
         return status;

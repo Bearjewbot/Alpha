@@ -29,7 +29,7 @@ public static class ProjectFactory
             Description = entity.Description,
             Customer = CustomerFactory.MapCustomer(entity.Customer),
             Budget = BudgetFactory.MapBudget(entity.Budget),
-            Status = StatusFactory.MapStatus(entity.StatusType),
+            Status = StatusFactory.MapStatus(entity.Status),
             Dates = TimetableFactory.MapTimetable(entity.TimeTable)
         };
 
