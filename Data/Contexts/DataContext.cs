@@ -11,5 +11,4 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
     public DbSet<CustomerEntity> Customers { get; set; }
     public DbSet<ProjectEntity> Projects { get; set; }
     
-    
 }
