@@ -2,13 +2,14 @@ using Business.Factories;
 using Business.Interfaces;
 using Business.Models;
 using Data.Entities;
+using Data.Interfaces;
 using Data.Repositories;
 
 namespace Business.Services;
 
-public class ProjectService(ProjectRepository repository) : IProjectService
+public class ProjectService(IProjectRepository repository) : IProjectService
 {
-    private readonly ProjectRepository _repository = repository;
+    private readonly IProjectRepository _repository = repository;
     
     public async Task<bool> CreateProjectAsync(ProjectFormRegistration form)
     {
