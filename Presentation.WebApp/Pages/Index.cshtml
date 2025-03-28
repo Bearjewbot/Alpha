@@ -4,50 +4,5 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="card bg-white">
-    <div class="card-body">
-        
-        
-        <form method="post">
-            <div class="mb-3">
-                <label asp-for="FormData.Name" class="form-label">Project Name</label>
-                <input asp-for="FormData.Name" class="form-control"/>
-            </div>  
 
-            <div class="mb-3">
-                <label asp-for="FormData.Description" class="form-label">Description</label>
-                <textarea asp-for="FormData.Description" class="form-control"></textarea>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="FormData.Customer.Name" class="form-label">Customer</label>
-                <input asp-for="FormData.Customer.Name" class="form-control"></input>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="FormData.Budget.BudgetAmount" class="form-label">Budget</label>
-                <input asp-for="FormData.Budget.BudgetAmount" class="form-control" type="number" step="0.01"/>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="FormData.Status.Status" class="form-label">Status</label>
-                <input asp-for="FormData.Status.Status" class="form-control"></input>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="FormData.Dates.StartDate" class="form-label">Start Date</label>
-                <input asp-for="FormData.Dates.StartDate" class="form-control" type="date"/>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="FormData.Dates.EndDate" class="form-label">End Date</label>
-                <input asp-for="FormData.Dates.EndDate" class="form-control" type="date"/>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-
-        
-    </div>
-</div>
 
