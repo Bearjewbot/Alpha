@@ -8,27 +8,9 @@ namespace Presentation.WebApp.Pages;
 
 public class IndexModel(IProjectService projectService) : PageModel
 {
-
-    private readonly IProjectService _projectService = projectService;
-
-
-    [BindProperty] public Project FormData { get; set; } = new();
     
-    public List<Project> ProjectsList { get; set; } = [];
-    
-    
-    public async Task OnGet()
+    public void OnGet()
     {
-        var projects = await _projectService.GetProjectsAsync();
-
-        if (projects != null)
-        {
-            var project = projects.FirstOrDefault();
-
-            if (project != null)
-
-                FormData = project;
-
 
             // ProjectsList =
             // [
@@ -43,9 +25,6 @@ public class IndexModel(IProjectService projectService) : PageModel
             //         Dates = x.Dates
             //     })
             // ];
-        }
-        
-        
     }
 
     public void OnPost()

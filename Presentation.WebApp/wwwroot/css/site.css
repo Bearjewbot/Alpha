@@ -17,5 +17,32 @@ html, body {
     background-color: var(--background-color);
     margin: 0;
     scroll-behavior: smooth;
+    display: grid;
+    height: 100vh;
 }
 
+.container{
+    margin: 20px;
+}
+
+.main-page {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+            'aside header'
+            'aside main';
+
+    aside{
+        grid-area: aside;
+        background-color: #0a53be;
+    }
+
+    header{
+        grid-area: header;
+        background-color: #0c4128;
+    }
+
+    main {
+        grid-area: main;
+    }
+}
