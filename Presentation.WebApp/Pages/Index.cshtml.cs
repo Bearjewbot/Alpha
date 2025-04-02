@@ -8,23 +8,28 @@ namespace Presentation.WebApp.Pages;
 
 public class IndexModel(IProjectService projectService) : PageModel
 {
+    [BindProperty] public List<ShowProjects> ProjectsList { get; set; } = [];
     
-    public void OnGet()
+    public async Task OnGet()
     {
+        var projects = await projectService.GetProjectsAsync();
 
-            // ProjectsList =
-            // [
-            //     ..projects.Select(x => new Project
-            //     {
-            //         Id = x.Id,
-            //         Name = x.Name,
-            //         Description = x.Description,
-            //         Customer = x.Customer,
-            //         Budget = x.Budget,
-            //         Status = x.Status,
-            //         Dates = x.Dates
-            //     })
-            // ];
+        if (projects != null)
+        {
+            ProjectsList =
+            [
+                ..projects.Select(x => new ShowProjects()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Description = x.Description,
+                    Customer = x.Customer,
+                    Status = x.Status,
+                }).ToList()
+            ];
+        }
+        
+        
     }
 
     public void OnPost()

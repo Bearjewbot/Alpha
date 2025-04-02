@@ -5,13 +5,18 @@
 }
 
 <div class="container">
-    <div class="row">
-        <div class="col-2 me-auto">Projects</div>
-        <button type="button" class="col-3 btn btn-primary">+ Add Project</button>
+    <div class="d-flex">
+        <div class=" me-auto fs-3">Projects</div>
+        <button type="button" class="btn btn-primary">+ Add Project</button>
     </div>
-    <div class="row">
-        <div></div>
-        
+    <div class="flex-row mt-4">
+        <button class="btn">All</button>      
+        <button class="btn">Started</button>
+        <button class="btn">Completed</button>
     </div>
+    <div>
+        @await Html.PartialAsync("Partials/_ProjectCards", Model.ProjectsList)
+    </div>
+
     
 </div>

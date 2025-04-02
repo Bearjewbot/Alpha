@@ -35,6 +35,20 @@ public static class ProjectFactory
 
         return project;
     }
+    
+    public static Project MapProjects(ProjectEntity entity)
+    {
+        var project = new Project
+        {   
+            Id = entity.Id,
+            Name = entity.Name,
+            Description = entity.Description,
+            Customer = CustomerFactory.MapCustomer(entity.Customer),
+            Status = StatusFactory.MapStatus(entity.Status),
+        };
+
+        return project;
+    }
 
     public static ProjectEntity MapProjectEntity(Project project)
     {
