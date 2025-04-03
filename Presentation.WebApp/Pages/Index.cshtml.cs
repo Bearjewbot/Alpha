@@ -31,7 +31,6 @@ public class IndexModel(IProjectService projectService) : PageModel
         
         
     }
-
     public async Task<IActionResult> OnPostDeleteAsync(int id)
     {
         await projectService.DeleteProjectAsync(id);
