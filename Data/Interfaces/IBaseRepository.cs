@@ -8,6 +8,6 @@ public interface IBaseRepository<TEntity> where TEntity : class
     public Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? expression = null);
     public Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> expression);
     public Task<TEntity?> UpdateAsync(Expression<Func<TEntity, bool>> expression, TEntity entity);
-    public Task<bool> DeleteAsync(TEntity entity);
+    public Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> expression);
     public bool IfExists(Expression<Func<TEntity, bool>> expression);
 }

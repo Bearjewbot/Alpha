@@ -91,13 +91,20 @@ public abstract class BaseRepository<TEntity>(DataContext context) : IBaseReposi
         }
     }
 
-    public virtual async Task<bool> DeleteAsync(TEntity entity)
+    public virtual async Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> expression)
     {
         try
         {
-            DbSet.Remove(entity);
-            await Context.SaveChangesAsync();
-            return true;
+            var entity = await DbSet.FirstOrDefaultAsync(expression);
+
+            if (entity != null)
+            {
+                DbSet.Remove(entity);
+                await Context.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
         }
         catch (DbUpdateConcurrencyException e)
         {
