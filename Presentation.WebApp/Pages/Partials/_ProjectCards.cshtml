@@ -3,26 +3,30 @@
 @foreach (var project in Model)
 {
   <div class="card m-2 mt-4 p-3" style="width: 22rem;">
-    <div class="d-flex flex-row">
-      <div class="col-2 me-4 m-2">
-        <img src="images/Image.svg" style="width: 100px;" class="img-fluid rounded-start" alt="Project logo">
+    <form>
+      <div class="d-flex flex-row">
+        <div class="col-2 me-4 m-2">
+          <img src="images/Image.svg" style="width: 100px;" class="img-fluid rounded-start" alt="Project logo">
+        </div>
+        <div class="col-5 me-auto mt-2">
+          <h5 class="card-title">@project.Name</h5>
+          <p class="card-text">@project.Customer.Name</p>
+        </div>  
+        <div class="col-2 dropdown">
+          <img src="images/More 2.svg" alt="Edit project image" class="btn dropdown-toggle" data-bs-toggle="dropdown"/>
+          <ul class="dropdown-menu">
+            <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button></li>
+            <li><button class="dropdown-item" type="submit" asp-page-handler="delete" asp-route-id="@project.Id">Delete Project</button></li>
+          </ul>
+        </div>
       </div>
-      <div class="col-5 me-auto mt-2">
-        <h5 class="card-title">@project.Name</h5>
-        <p class="card-text">@project.Customer.Name</p>
-      </div>  
-      <div class="col-2 dropdown">
-        <img src="images/More 2.svg" alt="Edit project image" class="btn dropdown-toggle" data-bs-toggle="dropdown"/>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item">Edit</a></li>
-          <li><button class="dropdown-item" type="submit" asp-page-handler="delete" asp-route-id="@project.Id">Delete</button></li>
-        </ul>
-      </div>
-    </div>
+    </form>
     <div class="row mt-3">
       <div class="card-text">
         @project.Description
       </div>
     </div>
   </div>
+  
+  @await Html.PartialAsync("Partials/_EditProject", project)
 }

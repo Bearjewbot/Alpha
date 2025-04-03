@@ -13,7 +13,6 @@ public static class ProjectFactory
             Description = form.Description,
             CustomerId = form.CustomerId,
             TimeTableId = form.TimetableId,
-            StatusId = form.StatusTypeId,
             BudgetId = form.BudgetId
         };
 
