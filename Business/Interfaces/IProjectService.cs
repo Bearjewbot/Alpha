@@ -9,5 +9,5 @@ public interface IProjectService
     Task<IEnumerable<Project>?> GetProjectsAsync();
     Task<Project?> GetProjectAsync(int id);
     Task<bool> UpdateProjectAsync(ProjectEntity entity);
-    Task<bool> DeleteProjectAsync(ProjectEntity entity);
+    Task<bool> DeleteProjectAsync(int id);
 }

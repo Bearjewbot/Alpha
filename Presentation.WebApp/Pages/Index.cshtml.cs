@@ -32,8 +32,10 @@ public class IndexModel(IProjectService projectService) : PageModel
         
     }
 
-    public void OnPost()
+    public async Task<IActionResult> OnPostDeleteAsync(int id)
     {
+        await projectService.DeleteProjectAsync(id);
         
+        return RedirectToPage();
     }
 }

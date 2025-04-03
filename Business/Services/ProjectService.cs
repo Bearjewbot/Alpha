@@ -54,9 +54,9 @@ public class ProjectService(IProjectRepository repository) : IProjectService
         return false;
     }
 
-    public async Task<bool> DeleteProjectAsync(ProjectEntity entity)
+    public async Task<bool> DeleteProjectAsync(int id)
     {
-       var result = await _repository.DeleteAsync(entity);
+       var result = await _repository.DeleteAsync(x => x.Id == id);
        return result; 
     }
 }
