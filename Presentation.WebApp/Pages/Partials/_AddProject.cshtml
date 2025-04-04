@@ -1,11 +1,10 @@
- @using Business.Models
-@model Business.Models.ShowProjects
+@model Business.Models.ProjectFormRegistration
 
-<div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" id="editModal">
+<div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" id="addModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content rounded-4 shadow">
             <div class="modal-header p-5 pb-4 border-bottom-0">
-                <h1 class="mb-0 fs-2">Edit Project</h1>
+                <h1 class="mb-0 fs-2">Add Project</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -16,11 +15,11 @@
                 <form method="post">
                     <div class="form-label mb-3">
                         <label for="projectName">Project Name</label>
-                        <input type="text" class="form-control rounded-3" id="projectName" placeholder="@Model.Name">
+                        <input type="text" class="form-control rounded-3" id="projectName" asp-for="@Model.Name">
                     </div>
                     <div class="form-label mb-3">
                         <label for="clientName">Client Name</label>
-                        <input type="text" class="form-control rounded-3" id="clientName">
+                        <input type="text" class="form-control rounded-3" id="clientName" asp-for="@Model.CustomerId">
                     </div>
                     <div class="form-label mb-3">
                         <label for="projectDescription">Description</label>
