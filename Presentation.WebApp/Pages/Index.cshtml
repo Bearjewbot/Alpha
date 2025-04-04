@@ -7,7 +7,8 @@
 <div class="container">
     <div class="d-flex">
         <div class=" me-auto fs-3">Projects</div>
-        <button type="button" class="btn btn-primary">+ Add Project</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">+ Add Project</button>
+        @await Html.PartialAsync("Partials/_AddProject", Model.FormData)
     </div>
     <div class="flex-row mt-4">
         <button class="btn">All</button>      

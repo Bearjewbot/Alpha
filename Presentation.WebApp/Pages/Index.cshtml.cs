@@ -8,6 +8,7 @@ namespace Presentation.WebApp.Pages;
 
 public class IndexModel(IProjectService projectService) : PageModel
 {
+    [BindProperty] public ProjectFormRegistration FormData { get; set; } = new();
     [BindProperty] public List<ShowProjects> ProjectsList { get; set; } = [];
     
     public async Task OnGet()
@@ -35,6 +36,11 @@ public class IndexModel(IProjectService projectService) : PageModel
     {
         await projectService.DeleteProjectAsync(id);
         
+        return RedirectToPage();
+    }
+
+    public IActionResult OnPost()
+    {
         return RedirectToPage();
     }
 }
