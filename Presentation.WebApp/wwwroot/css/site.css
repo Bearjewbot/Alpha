@@ -6,7 +6,12 @@
     --text-color: black; 
     --text-muted-color: #757575;
     --background-color: white;
-    --standard-fontfamily: "sharif" 
+    --standard-fontfamily: "sharif";
+    
+    --gray-500: #DEDEDE;
+    
+/*    Boarders */
+    --border-color: var(--gray-500)
 }
 
 html, body {
@@ -34,15 +39,21 @@ html, body {
 
     aside{
         grid-area: aside;
-        background-color: #0a53be;
     }
 
     header{
         grid-area: header;
-        background-color: #0c4128;
     }
 
     main {
         grid-area: main;
     }
+}
+
+#header{
+    border-bottom: 1px solid var(--border-color);
+    padding: 2rem;
+    display: flex;
+    justify-content: end;
+    align-content: center;
 }
