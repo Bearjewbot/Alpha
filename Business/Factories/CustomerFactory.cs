@@ -16,4 +16,14 @@ public static class CustomerFactory
 
         return customer;
     }
+
+    public static CustomerEntity MapCustomerEntity(string customer)
+    {
+        var entity = new CustomerEntity
+        {
+            Name = customer
+        };
+
+        return entity;
+    }
 }

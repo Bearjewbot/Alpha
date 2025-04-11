@@ -1,9 +1,9 @@
-@model List<Business.Models.ShowProjects>
+@model List<Presentation.WebApp.Models.ShowProjectsModel>
 
 @foreach (var project in Model)
 {
   <div class="card m-2 mt-4 p-3" style="width: 22rem;">
-    <form>
+    <form method="post">
       <div class="d-flex flex-row">
         <div class="col-2 me-4 m-2">
           <img src="images/Image.svg" style="width: 100px;" class="img-fluid rounded-start" alt="Project logo">

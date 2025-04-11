@@ -16,7 +16,7 @@ public static class ProjectFactory
             BudgetId = form.BudgetId,
             StatusId = form.StatusId
         };
-
+        
         return entity;
     }
 

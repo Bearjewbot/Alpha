@@ -16,4 +16,15 @@ public static class TimetableFactory
 
         return timetable;
     }
+
+    public static TimetableEntity MapTimetableEntity(DateTime startTime, DateTime endTime)
+    {
+        var entity = new TimetableEntity
+        {
+            StartDate = startTime,
+            EndDate = endTime,
+        };
+
+        return entity;
+    }
 }
