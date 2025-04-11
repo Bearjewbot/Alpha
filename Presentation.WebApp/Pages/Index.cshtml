@@ -8,7 +8,57 @@
     <div class="d-flex">
         <div class=" me-auto fs-3">Projects</div>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">+ Add Project</button>
-        @await Html.PartialAsync("Partials/_AddProject", Model.FormData)
+        <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" id="addModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header p-5 pb-4 border-bottom-0">
+                <h1 class="mb-0 fs-2">Add Project</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-5 pt-0">
+                <div class="d-flex p-5">
+                    <img src="images/Image.svg" class="mx-auto" style="height: 160px;" alt="Project image"/>
+                </div>
+                <form method="post">
+                    <div class="form-label mb-3">
+                        <label for="projectName">Project Name</label>
+                        <input type="text" class="form-control rounded-3" id="projectName" asp-for="@Model.FormData.Name">
+                    </div>
+                    <div class="form-label mb-3">
+                        <label for="clientName">Client Name</label>
+                        <input type="text" class="form-control rounded-3" id="clientName" asp-for="@Model.FormData.Customer">
+                    </div>
+                    <div class="form-label mb-3">
+                        <label for="projectDescription">Description</label>
+                        <input type="text" class="form-control rounded-3" id="projectDescription" asp-for="@Model.FormData.Description">
+                    </div>
+                    <div class="d-flex mb-3">
+                        <div class="me-auto">
+                            <label for="startDate">Start Date</label>
+                            <input type="date" class="form-control rounded-3" id="startDate" asp-for="@Model.FormData.StartDate"/>
+                        </div>
+                        <div>
+                            <label for="endDate">End Date</label>
+                            <input type="date" class="form-control rounded-3" id="endDate" asp-for="@Model.FormData.EndDate"/>
+                        </div>
+                    </div>
+                    <div class="form-label mb-3">
+                        <label for="projectBudget">Budget</label>
+                        <input type="number" class="form-control rounded-3" id="projectBudget" asp-for="@Model.FormData.Budget">
+                    </div>
+                    <div class="form-label mb-5">
+                        <label for="projectStatus">Status</label>
+                        <select id="projectStatus" class="form-select" asp-for="@Model.FormData.StatusId" asp-items="Model.StatusList">
+                            <option value="">Select a status</option>
+                        </select>
+                    </div>
+                    <button class="w-100 mt-5 btn btn-lg rounded-3 btn-primary" asp-page-handler="create" type="submit" value="Save">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
     </div>
     <div class="flex-row mt-4">
         <button class="btn">All</button>      

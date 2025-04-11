@@ -15,4 +15,14 @@ public static class BudgetFactory
 
         return budget;
     }
+
+    public static BudgetEntity MapBudgetEntity(decimal budget)
+    {
+        var entity = new BudgetEntity
+        {
+            Budget = budget,
+        };
+
+        return entity;
+    }
 }

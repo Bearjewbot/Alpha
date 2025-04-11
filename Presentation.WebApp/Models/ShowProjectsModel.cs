@@ -1,6 +1,8 @@
-namespace Business.Models;
+using Business.Models;
 
-public class ShowProjects
+namespace Presentation.WebApp.Models;
+
+public class ShowProjectsModel
 {
     public int Id { get; set; }
     
