@@ -57,3 +57,26 @@ html, body {
     justify-content: end;
     align-content: center;
 }
+
+#aside{
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+    width: 220px;
+    font-size: 2rem;
+    
+    div{
+        padding: 1rem;
+        background-color: lightsteelblue;
+        text-align: start;
+        margin: 0 13px 0;
+        border-radius: 15px;
+        font-size: 1rem;
+    }
+    
+}
+
+a{
+    text-decoration: none;
+    font-size: 1em;
+}

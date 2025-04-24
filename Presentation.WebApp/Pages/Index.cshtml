@@ -50,7 +50,7 @@
                     <div class="form-label mb-5">
                         <label for="projectStatus">Status</label>
                         <select id="projectStatus" class="form-select" asp-for="@Model.FormData.StatusId" asp-items="Model.StatusList">
-                            <option value="">Select a status</option>
+                            <option hidden value="">Select a status</option>
                         </select>
                     </div>
                     <button class="w-100 mt-5 btn btn-lg rounded-3 btn-primary" asp-page-handler="create" type="submit" value="Save">Save</button>
