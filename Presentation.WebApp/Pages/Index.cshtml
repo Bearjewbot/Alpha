@@ -61,9 +61,11 @@
 </div>
     </div>
     <div class="flex-row mt-4">
-        <button class="btn">All</button>      
-        <button class="btn">Started</button>
-        <button class="btn">Completed</button>
+        <form method="post">
+            <button class="btn" asp-page-handler="filterProjectsAll">All</button>
+            <button class="btn" asp-page-handler="filterProjectsStarted">Started</button>
+            <button class="btn" asp-page-handler="filterProjectsCompleted">Completed</button>
+        </form>
     </div>
 </div>
 

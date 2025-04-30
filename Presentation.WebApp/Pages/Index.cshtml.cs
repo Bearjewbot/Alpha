@@ -50,6 +50,79 @@ public class IndexModel(IProjectService projectService, IStatusTypeService statu
         }
         
     }
+    
+    public async Task<IActionResult> OnPostFilterProjectsAllAsync()
+    {
+        var projects = await projectService.GetProjectsAsync();
+
+        if (projects != null)
+        {
+            ProjectsList =
+            [
+                ..projects.Select(x => new ShowProjectsModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Description = x.Description,
+                    Customer = x.Customer,
+                    Status = x.Status,
+                    Dates = x.Dates,
+                    Budget = x.Budget,
+                }).ToList()
+            ];
+            return Page();
+        }
+
+        return RedirectToPage();
+    }
+
+    public async Task<IActionResult> OnPostFilterProjectsStartedAsync()
+    {
+        var projects = await projectService.GetFilteredProjectsAsync(x => x.StatusId == 1);
+
+        if (projects != null)
+        {
+            ProjectsList =
+            [
+                ..projects.Select(x => new ShowProjectsModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Description = x.Description,
+                    Customer = x.Customer,
+                    Status = x.Status,
+                    Dates = x.Dates,
+                    Budget = x.Budget,
+                }).ToList()
+            ];
+            return Page();
+        }
+        return RedirectToPage();
+    }
+    
+    public async Task<IActionResult> OnPostFilterProjectsCompletedAsync()
+    {
+        var projects = await projectService.GetFilteredProjectsAsync(x => x.StatusId == 2);
+
+        if (projects != null)
+        {
+            ProjectsList =
+            [
+                ..projects.Select(x => new ShowProjectsModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Description = x.Description,
+                    Customer = x.Customer,
+                    Status = x.Status,
+                    Dates = x.Dates,
+                    Budget = x.Budget,
+                }).ToList()
+            ];
+            return Page();
+        }
+        return RedirectToPage();
+    }
     public async Task<IActionResult> OnPostDeleteAsync(int id)
     {
         await projectService.DeleteProjectAsync(id);

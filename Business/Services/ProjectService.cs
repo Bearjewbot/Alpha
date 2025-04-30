@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using Business.Factories;
 using Business.Interfaces;
 using Business.Models;
@@ -29,6 +30,12 @@ public class ProjectService(IProjectRepository repository) : IProjectService
     public async Task<IEnumerable<Project>?> GetProjectsAsync()
     {
         var entityList = await _repository.GetAllAsync();
+        return entityList.Select(ProjectFactory.MapProject);
+    }
+    
+    public async Task<IEnumerable<Project>?> GetFilteredProjectsAsync(Expression<Func<ProjectEntity, bool>> expression)
+    {
+        var entityList = await _repository.GetAllAsync(expression);
         return entityList.Select(ProjectFactory.MapProject);
     }
 
