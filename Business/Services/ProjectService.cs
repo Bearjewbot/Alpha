@@ -29,7 +29,7 @@ public class ProjectService(IProjectRepository repository) : IProjectService
     public async Task<IEnumerable<Project>?> GetProjectsAsync()
     {
         var entityList = await _repository.GetAllAsync();
-        return entityList.Select(ProjectFactory.MapProjects);
+        return entityList.Select(ProjectFactory.MapProject);
     }
 
     public async Task<Project?> GetProjectAsync(int id)

@@ -23,4 +23,15 @@ public class TimetableService(ITimetableRepository repository) : ITimetableServi
 
         return null; 
     }
+
+    public async Task<bool> UpdateTimetableAsync(TimetableEntity entity)
+    {
+        var result = await _repository.UpdateAsync(x => x.Id == entity.Id, entity);
+        
+        if (result != null)
+        {
+            return true;
+        }
+        return false;
+    }
 }

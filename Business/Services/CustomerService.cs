@@ -22,4 +22,15 @@ public class CustomerService(ICustomerRepository repository) : ICustomerService
 
         return null; 
     }
+    
+    public async Task<bool> UpdateCustomerAsync(CustomerEntity entity)
+    {
+        var result = await _repository.UpdateAsync(x => x.Id == entity.Id, entity);
+        
+        if (result != null)
+        {
+            return true;
+        }
+        return false;
+    }
 }

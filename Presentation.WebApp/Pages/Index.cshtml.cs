@@ -1,6 +1,7 @@
 using Business.Interfaces;
 using Business.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
+using Data.Entities;
+using Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,25 +11,28 @@ using Presentation.WebApp.Models;
 
 namespace Presentation.WebApp.Pages;
 
-public class IndexModel(IProjectService projectService, IStatusTypeService statusService, IBudgetService budgetService, ICustomerService customerService, ITimetableService timetableService) : PageModel
+public class IndexModel(IProjectService projectService, IStatusTypeService statusService, IBudgetService budgetService, ICustomerService customerService, ITimetableService timetableService, IProjectRepository projectRepository) : PageModel
 {
-
-    private readonly IProjectService _projectService = projectService;
-    private readonly IStatusTypeService _statusService = statusService;
-    private readonly IBudgetService _budgetService = budgetService;
-    private readonly ICustomerService _customerService = customerService;
-    private readonly ITimetableService _timetableService = timetableService;
-    
-    [BindProperty] public AddProjectFormModel FormData { get; set; } = new();
+    [BindProperty] public ProjectFormModel FormData { get; set; } = new();
     [BindProperty] public List<ShowProjectsModel> ProjectsList { get; set; } = [];
-
-     public List<SelectListItem> StatusList { get; set; } = [];
+    [BindProperty] public List<SelectListItem> StatusList { get; set; } = [];
     
     public async Task OnGet()
     {
-        var projects = await _projectService.GetProjectsAsync();
+        var statusOptions = await statusService.GetAllAsync();
 
-        if (projects != null)
+        if (statusOptions != null)
+        {
+            StatusList = statusOptions.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Status
+            }).ToList();
+        }
+        
+        var projects = await projectService.GetProjectsAsync();
+
+        if (projects != null && StatusList.Count > 0)
         {
             ProjectsList =
             [
@@ -39,34 +43,25 @@ public class IndexModel(IProjectService projectService, IStatusTypeService statu
                     Description = x.Description,
                     Customer = x.Customer,
                     Status = x.Status,
+                    Dates = x.Dates,
+                    Budget = x.Budget,
                 }).ToList()
             ];
         }
-
-        var statusOptions = await _statusService.GetAllAsync();
-
-        if (statusOptions != null)
-        {
-            StatusList = statusOptions.Select(x => new SelectListItem
-            {
-                Value = x.Id.ToString(),
-                Text = x.Status
-            }).ToList();
-        }
-
+        
     }
     public async Task<IActionResult> OnPostDeleteAsync(int id)
     {
-        await _projectService.DeleteProjectAsync(id);
+        await projectService.DeleteProjectAsync(id);
         
         return RedirectToPage();
     }
 
     public async Task<IActionResult> OnPostCreateAsync()
     {
-        var budgetEntity = await _budgetService.CreateBudgetAsync(FormData.Budget);
-        var customerEntity = await _customerService.CreateCustomerAsync(FormData.Customer);
-        var timetableEntity = await _timetableService.CreateTimetableAsync(FormData.StartDate, FormData.EndDate);
+        var budgetEntity = await budgetService.CreateBudgetAsync(FormData.Budget);
+        var customerEntity = await customerService.CreateCustomerAsync(FormData.Customer);
+        var timetableEntity = await timetableService.CreateTimetableAsync(FormData.StartDate, FormData.EndDate);
 
         if (budgetEntity != null && customerEntity != null && timetableEntity != null)
         {
@@ -82,14 +77,63 @@ public class IndexModel(IProjectService projectService, IStatusTypeService statu
 
             try
             {
-                await _projectService.CreateProjectAsync(mappedProject);
+                await projectService.CreateProjectAsync(mappedProject);
             }
             catch (DbUpdateConcurrencyException e)
             {
+                Console.WriteLine(e);
                 throw;
             }
         }
         
         return RedirectToPage();
+    }
+
+    public async Task<IActionResult> OnPostUpdateAsync(int id)
+    {
+
+        var previousEntity = await projectRepository.GetAsync(x => x.Id == id);
+
+        if (previousEntity != null)
+        {
+            try
+            {
+                await budgetService.UpdateBudgetAsync(new BudgetEntity
+                {
+                    Id = previousEntity.BudgetId,
+                    Budget = FormData.Budget
+                });
+
+                await timetableService.UpdateTimetableAsync(new TimetableEntity
+                {
+                    Id = previousEntity.TimeTableId,
+                    StartDate = FormData.StartDate,
+                    EndDate = FormData.EndDate
+                });
+
+                await customerService.UpdateCustomerAsync(new CustomerEntity
+                {
+                    Id = previousEntity.CustomerId,
+                    Name = FormData.Customer
+                });
+
+                await projectService.UpdateProjectAsync(new ProjectEntity
+                {
+                    Id = id,
+                    Name = FormData.Name,
+                    Description = FormData.Description,
+                    CustomerId = previousEntity.CustomerId,
+                    TimeTableId = previousEntity.TimeTableId,
+                    StatusId = FormData.StatusId,
+                    BudgetId = previousEntity.BudgetId
+                });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        return RedirectToPage(); 
     }
 }
