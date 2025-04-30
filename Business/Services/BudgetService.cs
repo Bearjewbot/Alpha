@@ -23,4 +23,15 @@ public class BudgetService(IBudgetRepository repository) : IBudgetService
 
         return null;
     }
+    
+    public async Task<bool> UpdateBudgetAsync(BudgetEntity entity)
+    {
+        var result = await _repository.UpdateAsync(x => x.Id == entity.Id, entity);
+        
+        if (result != null)
+        {
+            return true;
+        }
+        return false;
+    }
 }

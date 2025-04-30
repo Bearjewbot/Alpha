@@ -1,4 +1,5 @@
 using Business.Models;
+using Data.Entities;
 
 namespace Business.Interfaces;
 

@@ -3,8 +3,10 @@ using Business.Models;
 
 namespace Presentation.WebApp.Models;
 
-public class AddProjectFormModel
+public class ProjectFormModel
 {
+    public int Id { get; set; }
+    
     [Required(ErrorMessage = "You must enter the project name")]
     [MinLength(3, ErrorMessage = "The project name is too short")]
     [MaxLength(100, ErrorMessage = "The project name is too long")]

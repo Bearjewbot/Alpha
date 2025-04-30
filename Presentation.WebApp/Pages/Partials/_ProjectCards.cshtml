@@ -15,7 +15,7 @@
         <div class="col-2 dropdown">
           <img src="images/More 2.svg" alt="Project options image" class="btn dropdown-toggle" data-bs-toggle="dropdown"/>
           <ul class="dropdown-menu">
-            <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button></li>
+            <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#editModal" data-statuses="@project." data-editEndDate="@project.Dates.EndDate" data-editStartDate="@project.Dates.StartDate" data-editProjectStatus="@project.Status.Status" data-editClientName="@project.Customer.Name" data-editProjectName="@project.Name" data-editBudget="@project.Budget.BudgetAmount" data-editProjectId="@project.Id" data-editProjectDescription="@project.Description">Edit</button></li>
             <li><button class="dropdown-item" type="submit" asp-page-handler="delete" asp-route-id="@project.Id">Delete Project</button></li>
           </ul>
         </div>
@@ -28,5 +28,39 @@
     </div>
   </div>
   
-  @await Html.PartialAsync("Partials/_EditProject", project)
+  
+  <script>
+    @*     Nedan kod är skapad av chatGPT  *@
+document.addEventListener('DOMContentLoaded', () => {
+  const editModal = document.getElementById('editModal');
+  
+  editModal.addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget;
+
+    // Get data from button
+    const id = button.getAttribute('data-editProjectId');
+    const name = button.getAttribute('data-editProjectName');
+    const description = button.getAttribute('data-editProjectDescription');
+    const client = button.getAttribute('data-editClientName');
+    const startDate = button.getAttribute('data-editStartDate');
+    const endDate = button.getAttribute('data-editEndDate');
+    const status = button.getAttribute('data-editProjectStatus');
+    const statusOptions = button.getAttribute('')
+
+
+    // Set modal input values
+    document.getElementById('editProjectId').value = id;
+    document.getElementById('editProjectName').value = name;
+    document.getElementById('editProjectDescription').value = description;
+    document.getElementById('editClientName').value = client;
+    document.getElementById('editStartDate').value = startDate;
+    document.getElementById('editEndDate').value = endDate;
+    document.getElementById('editProjectStatus').value = status;
+
+
+  });
+});
+
+  </script>
 }
+

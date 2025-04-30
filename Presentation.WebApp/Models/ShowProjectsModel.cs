@@ -1,4 +1,5 @@
 using Business.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Presentation.WebApp.Models;
 
@@ -14,4 +15,7 @@ public class ShowProjectsModel
     
     public StatusType Status { get; set; } = null!;
     
+    public Budget Budget { get; set; } = null!;
+
+    public Timetable Dates { get; set; } = null!;
 }
